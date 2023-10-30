@@ -1054,7 +1054,8 @@ Start Blog Section
 
  			<!-- Contact Form -->
  			<div class="contact-form col-md-6 ">
- 				<form id="contact-form" method="post" role="form">
+ 				<!--<form id="contact-form" method="post" role="form">-->
+				<form id="contact-form">
  					<div class="form-group mb-4">
  						<input type="text" placeholder="Tu Nombre" class="form-control" name="name" id="name" required>
  					</div>
@@ -1064,23 +1065,46 @@ Start Blog Section
  					</div>
 
  					<div class="form-group mb-4">
- 						<input type="text" placeholder="Asunto" class="form-control" name="subject" id="subject" required>
+ 						<input type="text" placeholder="Asunto" class="form-control" name="subject" id="subject">
  					</div>
 
  					<div class="form-group mb-4">
  						<textarea rows="6" placeholder="Mensaje" class="form-control" name="message" id="message" required></textarea>
  					</div>
  					<div id="cf-submit">
- 						<input type="submit" id="contact-submit" class="btn btn-transparent" value="Enviar">
+						<!--<input type="submit" id="contact-submit" class="btn btn-transparent" value="Enviar">-->
+						<input id="contact-submit" class="btn btn-transparent" value="Enviar" onclick="submitContactForm()">
  					</div>
-
+					<div id="response"></div>
  				</form>
  			</div>
  			<!-- ./End Contact Form -->
-
  		</div> <!-- end row -->
  	</div> <!-- end container -->
  </section> <!-- end section -->
+
+<script>
+ /* ========================================================================= */
+ /*	Submit Contact Form
+ /* ========================================================================= */
+ function submitContactForm() {
+	//if (contac-form.checkValidity()){
+		var form = document.getElementById("contact-form");
+		var formData = new FormData(form);
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "sendmail/send_email.php", true);
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				document.getElementById("response").innerHTML = xhr.responseText;
+			}
+		};
+
+		xhr.send(formData);
+	//}
+}
+</script>
 <footer id="footer" class="bg-one">
   <div class="top-footer">
     <div class="container">

@@ -181,5 +181,4 @@
       $('.navigation').removeClass('sticky-header');
     }
   });
-
 })(jQuery);
