@@ -86,20 +86,22 @@
  /*	Submit Contact Form
  /* ========================================================================= */
  function submitContactForm() {
-	//if (contac-form.checkValidity()){
-		var form = document.getElementById("contact-form");
-		var formData = new FormData(form);
 
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "sendmail/send_email.php", true);
+	//alert(empty(document.getElementById("name")));
 
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				document.getElementById("response").innerHTML = xhr.responseText;
-			}
-		};
+	var form = document.getElementById("contact-form");
+	
+	var formData = new FormData(form);
 
-		xhr.send(formData);
-	//}
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "sendmail/send_email.php", true);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById("response").innerHTML = xhr.responseText;
+		}
+	};
+
+	xhr.send(formData);
 }
 </script>

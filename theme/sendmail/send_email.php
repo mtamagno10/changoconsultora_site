@@ -19,12 +19,12 @@ if (empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["message"]))
     $mensaje = $_POST["message"];
 
     // Datos de la cuenta de correo utilizada para enviar vía SMTP
-    $smtpHost = "usuario.ferozo.com";  // Dominio alternativo brindado en el email de alta 
-    $smtpUsuario = "miCuenta@miDominio.com";  // Mi cuenta de correo
-    $smtpClave = "miClave";  // Mi contraseña
+    $smtpHost = "smtp-relay.gmail.com";  // Dominio alternativo brindado en el email de alta 
+    $smtpUsuario = "martin@changoconsultora.com";  // Mi cuenta de correo
+    $smtpClave = "Chango!01";  // Mi contraseña
 
     // Email donde se enviaran los datos cargados en el formulario de contacto
-    $emailDestino = "correo_destinatario@suDominio.com";
+    $emailDestino = "martin@changoconsultora.com";
 
     $mail = new PHPMailer();
     $mail->IsSMTP();
@@ -46,12 +46,12 @@ if (empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["message"]))
 
     $mail->Subject = "Contacto desde la Web"; // Este es el titulo del email.
     $mensajeHtml = nl2br($mensaje);
-    $mail->Body = "{$mensajeHtml} <br /><br />Formulario de ejemplo. By DonWeb<br />"; // Texto del email en formato HTML
-    $mail->AltBody = "{$mensaje} \n\n Formulario de ejemplo By DonWeb"; // Texto sin formato HTML
+    $mail->Body = $mensajeHtml; // Texto del email en formato HTML
+    $mail->AltBody = $mensaje; // Texto sin formato HTML
     // FIN - VALORES A MODIFICAR //
 
-    //$estadoEnvio = $mail->Send(); 
-    $estadoEnvio = false;
+    $estadoEnvio = $mail->Send(); 
+    //$estadoEnvio = true;
     if($estadoEnvio){
         echo "El correo fue enviado correctamente.";
     } else {
